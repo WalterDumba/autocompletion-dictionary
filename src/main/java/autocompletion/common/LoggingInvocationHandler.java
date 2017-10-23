@@ -30,13 +30,11 @@ public class LoggingInvocationHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
 
-        long init = System.currentTimeMillis();
         System.out.println(String.format("[%s] -- Begin", method.getName()));
-
+        long init = System.currentTimeMillis();
         Object result = method.invoke(delegate, args);
-
-        System.out.println(String.format("[%s] -- End", method.getName()));
         System.out.println(String.format("[%s] -- Execution time: %s (ms)", method.getName(), System.currentTimeMillis()-init));
+        System.out.println(String.format("[%s] -- End", method.getName()));
         return result;
     }
 }
